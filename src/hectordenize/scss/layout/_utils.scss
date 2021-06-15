@@ -1,0 +1,300 @@
+// ./hectordenize/scss/layout/_utils.scss
+// UTILS for LAYOUT
+
+@use "sass:map";
+@use '../core/breakpoints' as brkpnts;
+@use '../core/colors';
+
+// ------------------------------------------------------------------
+// --------- AVAILABLE UTILS HELPERS ---------
+// ------------------------------------------------------------------
+
+// .splitLine
+
+// ------------- info ------------- 
+// .bckgrnd-{label}, .color-{label}
+// {label} === from '../core/colors'
+// ------------- END info ------------- 
+// .bckgrnd-accent, .bckgrnd-white, bckgrnd-pale, .bckgrnd-light, .bckgrnd-dim, .bckgrnd-dusky, .bckgrnd-dark
+// .color-accent, .color-white, .color-pale, .color-light, .color-dim, .color-dusky, .color-dark
+
+// .txt-center, .txt-left, .txt-right, .txt-justify
+// .txt-underlined, .txt-bold
+// .vAlign-top, .vAlign-middle
+// .full-width
+// .float-left, .float-right
+
+// .p-rspnsv === value from '../core/breakpoints'
+
+// ------------- info ------------- 
+// {label} === from '../core/breakpoints'
+// {i} = from 0 trough 7
+// ------------- END info ------------- 
+// .p{label}-{i}           padding: {i}em; 
+//    e.g.: p-1     === padding: 1rem from XS screen || ALL screens
+//    e.g.: p-l-3   === padding: 3rem from L screen
+// .pY{label}-{i}          padding-top: {i}em; padding-bottom: {i}em;
+// .pX{label}-{i}          padding-left: {i}em; padding-right: {i}em;
+// .pTop{label}-{i}        padding-top: {i}em;
+// .pBtm{label}-{i}        padding-bottom: {i}em;
+// .m{label}-{i}           margin: {i}em;
+// .mY{label}-{i}          margin-top: {i}em; margin-bottom: {i}em;
+// .mX{label}-{i}          margin-left: {i}em; margin-right: {i}em;
+// .mTop{label}-{i}        margin-top: {i}em;
+// .mBtm{label}-{i}        margin-bottom: {i}em;
+
+
+
+// ------------------------------------------------------------------
+// --------- UTILS SPECIFICATIONS ---------
+// ------------------------------------------------------------------
+
+// ------------- SPLITLINE | HR -------------
+hr, .splitLine {
+  border: none;
+  border-top: colors.$colorLight 2px solid;
+  margin: 3rem 0;
+}
+// ------------- SPLITLINE | HR -------------
+
+
+
+// ------------- COLORS HELPERS ------------- 
+@each $label, $color in colors.$colors {
+  // .bckgrnd-{label}
+  .bckgrnd-#{$label} {
+    background: #{$color};
+  }
+  .color-#{$label} {
+    // .color-{label}
+    color: #{$color};
+  }
+}
+// ------------- END COLORS HELPERS ------------- 
+
+
+
+// ------------- ALIGNMENTS HELPERS ------------- 
+.txt-center {
+  text-align: center;
+}
+
+.txt-left {
+  text-align: left;
+}
+
+.txt-right {
+  text-align: right;
+}
+
+.txt-justify {
+  text-align: justify;
+}
+
+.txt-underlined {
+  text-decoration: underline;
+}
+
+.txt-bold {
+  font-weight: bold;
+}
+// ------------- END ALIGNMENTS HELPERS ------------- 
+
+
+
+// ------------- VERTICAL ALIGN HELPERS ------------- 
+.vAlign-top {
+  vertical-align: top;
+}
+
+.vAlign-middle {
+  vertical-align: middle;
+}
+// ------------- END VERTICAL ALIGN HELPERS ------------- 
+
+
+
+// -------------  SIZE HELPERS ------------- 
+.full-width {
+  width: 100%;
+}
+// -------------  END SIZE HELPERS ------------- 
+
+
+
+// -------------  FLOAT HELPERS ------------- 
+.float-left {
+  float: left;
+  margin: 1rem 2rem 1rem 0;
+}
+
+.float-right {
+  float: right;
+  margin: 1rem 0 1rem 2rem;
+}
+// -------------  END FLOAT HELPERS ------------- 
+
+
+
+// ---------------------------------
+// PADDING HELPERS
+// ---------------------------------
+
+// ------------- PADDING RESPONSIVE HELPERS ------------- 
+
+// {'padding-responsive'} defined in breakpoints
+// === from '../core/breakpoints'
+
+// RESPONSIVE PADDING for XS screen (all), S screen, M screen, L screen, XL screen
+@each $screenSizes, $values in brkpnts.$breakpoints {
+  @media screen and (min-width: map.get($values, 'min-width')) {
+    .p-rspnsv {
+      padding: #{map.get($values, 'padding-responsive')};
+    }
+  } 
+}
+
+// RESPONSIVE PADDING for XXXL screen
+@media screen and (min-width: map.get(brkpnts.$breakpointXXXL, 'min-width')) {
+  .p-rspnsv {
+    padding: #{map.get(brkpnts.$breakpointXXXL, 'padding-responsive')};
+  }
+} 
+
+
+
+// FIXED padding depending of breakpoints
+
+// PADDING for XS screen (all), S screen, M screen, L screen, XL screen
+@each $screenSizes, $values in brkpnts.$breakpoints {
+  @media screen and (min-width: map.get($values, 'min-width')) {
+    @for $i from 0 through 7 {
+      // .p{label}-{i}
+      .p#{map-get($values, 'label')}-#{$i} {
+        padding: #{$i}rem;
+      }
+      // .pY{label}-{i}
+      .pY#{map-get($values, 'label')}-#{$i} {
+        padding-top: #{$i}rem;
+        padding-bottom: #{$i}rem;
+      }
+      // .pX{label}-{i}
+      .pX#{map-get($values, 'label')}-#{$i} {
+        padding-left: #{$i}rem;
+        padding-right: #{$i}rem;
+      }
+      // .pTop{label}-{i}
+      .pTop#{map-get($values, 'label')}-#{$i} {
+        padding-top: #{$i}rem;
+      }
+      // .pBtm{label}-{i}
+      .pBtm#{map-get($values, 'label')}-#{$i} {
+        padding-bottom: #{$i}rem;
+      }
+    }
+  } 
+}
+
+// PADDING for XXXL screen
+@media screen and (min-width: map.get(brkpnts.$breakpointXXXL, 'min-width')) {
+  @for $i from 0 through 7 {
+    // .p-{label}-{i}
+    .p-#{map-get(brkpnts.$breakpointXXXL, 'label')}-#{$i} {
+      padding: #{$i}rem;
+    }
+    // .pY-{label}-{i}
+    .pY-#{map-get(brkpnts.$breakpointXXXL, 'label')}-#{$i} {
+      padding-top: #{$i}rem;
+      padding-bottom: #{$i}rem;
+    }
+    // .pX-{label}-{i}
+    .pX-#{map-get(brkpnts.$breakpointXXXL, 'label')}-#{$i} {
+      padding-left: #{$i}rem;
+      padding-right: #{$i}rem;
+    }
+    // .pTop-{i}
+    .pTop#{map-get(brkpnts.$breakpointXXXL, 'label')}-#{$i} {
+      padding-top: #{$i}rem;
+    }
+    // .pBtm-{i}
+    .pBtm#{map-get(brkpnts.$breakpointXXXL, 'label')}-#{$i} {
+      padding-bottom: #{$i}rem;
+    }
+  }
+} 
+
+// ------------- END PADDING RESPONSIVE HELPERS ------------- 
+
+// ---------------------------------
+// END PADDING HELPERS
+// ---------------------------------
+
+
+
+// ---------------------------------
+// MARGIN HELPERS
+// ---------------------------------
+
+// ------------- MARGIN RESPONSIVE HELPERS ------------- 
+// MARGIN for XS screen (all), S screen, M screen, L screen, XL screen
+@each $screenSizes, $values in brkpnts.$breakpoints {
+  @media screen and (min-width: map.get($values, 'min-width')) {
+    @for $i from 0 through 7 {
+      // .m{label}-{i}
+      .m#{map-get($values, 'label')}-#{$i} {
+        margin: #{$i}rem;
+      }
+      // .mY{label}-{i}
+      .mY#{map-get($values, 'label')}-#{$i} {
+        margin-top: #{$i}rem;
+        margin-bottom: #{$i}rem;
+      }
+      // .mX{label}-{i}
+      .mX#{map-get($values, 'label')}-#{$i} {
+        margin-left: #{$i}rem;
+        margin-right: #{$i}rem;
+      }
+      // .mTop-{i}
+      .mTop#{map-get($values, 'label')}-#{$i} {
+        margin-top: #{$i}rem;
+      }
+      // .mBtm-{i}
+      .mBtm#{map-get($values, 'label')}-#{$i} {
+        margin-bottom: #{$i}rem;
+      }
+    }
+  } 
+}
+
+// MARGIN for XXXL screen
+@media screen and (min-width: map.get(brkpnts.$breakpointXXXL, 'min-width')) {
+  @for $i from 0 through 7 {
+    // .m-{label}-{i}
+    .m-#{map-get(brkpnts.$breakpointXXXL, 'label')}-#{$i} {
+      margin: #{$i}rem;
+    }
+    // .mY-{label}-{i}
+    .mY-#{map-get(brkpnts.$breakpointXXXL, 'label')}-#{$i} {
+      margin-top: #{$i}rem;
+      margin-bottom: #{$i}rem;
+    }
+    // .mX-{label}-{i}
+    .mX-#{map-get(brkpnts.$breakpointXXXL, 'label')}-#{$i} {
+      margin-left: #{$i}rem;
+      margin-right: #{$i}rem;
+    }
+    // .mTop-{i}
+    .mTop#{map-get(brkpnts.$breakpointXXXL, 'label')}-#{$i} {
+      margin-top: #{$i}rem;
+    }
+    // .mBtm-{i}
+    .mBtm#{map-get(brkpnts.$breakpointXXXL, 'label')}-#{$i} {
+      margin-bottom: #{$i}rem;
+    }
+  }
+} 
+// ------------- END MARGIN RESPONSIVE HELPERS ------------- 
+
+// ---------------------------------
+// END MARGIN HELPERS
+// ---------------------------------
