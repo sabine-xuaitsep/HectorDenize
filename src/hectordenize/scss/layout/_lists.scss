@@ -1,0 +1,93 @@
+// ./hectordenize/scss/layout/_lists.scss
+// LISTS LAYOUT
+
+
+
+// ------------------------------------------------------------------
+// --------- AVAILABLE LISTS HELPERS ---------
+// ------------------------------------------------------------------
+
+// .ul--alt
+
+
+
+// ------------------------------------------------------------------
+// --------- LISTS VARIABLES & PLACEHOLDERS ---------
+// ------------------------------------------------------------------
+
+// ------------- UL & OL LAYOUT -------------
+%lists {
+  margin: 1em 0 1em 1em;
+  padding: 0 0 1em 0;
+}
+
+
+
+// ------------- UL ITEM -------------
+$ul-listItem-paddingLeft:  .5em;
+$ul-listStyleType:         initial;
+
+
+
+// ------------- ALTERNATIVE UL ITEM -------------
+$ul--alt-listItem-paddingLeft:  $ul-listItem-paddingLeft;
+$ul--alt-listStyleType:         square;
+
+
+
+// ------------- OL ITEM -------------
+$ol-listItem-paddingLeft:   .2em;
+$ol-listStyleType:          decimal;
+
+
+
+// ------------- DLIST -------------
+$descriptionList-titleWeight:    bold;
+$descriptionList-margin:         2rem 0 1rem 0;
+
+
+
+// ------------------------------------------------------------------
+// --------- LISTS SPECIFICATIONS ---------
+// ------------------------------------------------------------------
+
+// ------------- ULIST -------------
+ul { 
+  @extend %lists; 
+  li {
+    padding-left: $ul-listItem-paddingLeft;
+    list-style-type: $ul-listStyleType;
+  }
+}
+
+
+
+// ------------- ALTERNATIVE ULIST -------------
+.ul--alt { 
+  @extend %lists; 
+  li {
+    padding-left: $ul--alt-listItem-paddingLeft;
+    list-style-type: $ul--alt-listStyleType;
+  }
+}
+
+
+
+// ------------- OLIST -------------
+ol { 
+  @extend %lists; 
+  li {
+    padding-left: $ol-listItem-paddingLeft;
+    list-style-type: $ol-listStyleType;
+  } 
+}
+
+
+
+// ------------- DLIST -------------
+dl {
+  dt {
+    font-weight: $descriptionList-titleWeight;
+    margin: $descriptionList-margin;
+  }
+}
