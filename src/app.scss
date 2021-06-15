@@ -2,3 +2,320 @@
 // APP STYLESHEET
 
 @use './hectordenize/scss/main.scss' as main;
+
+// BODY BACKGROUND -------------
+body {
+  background: radial-gradient(50% 13% at 50% 7%, main.$colorDusky, main.$colorDark);
+}
+
+
+
+// APP HEADER -------------
+.appHeader {
+  opacity: 0;
+  position: relative;
+  top: 11rem;
+  transition: all 1000ms;
+
+  &.isVisible {
+    opacity: 1;
+    top: 9rem;
+    z-index: 1;
+  }
+
+  // ARROW SLIDEDOWN -------------
+  .slideDown {
+    border: 2px solid main.$colorWhite;
+    border-radius: 50%;
+    display: none;
+    transition: all .2s ease-in-out;
+    color: main.$colorWhite;
+    &:hover {
+      border: 2px solid main.$colorAccent;
+      color: main.$colorAccent;
+    }
+    i {
+      height: 4rem;
+      width: 4rem;
+      line-height: 4rem;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+
+
+// APP LOGO -------------
+.appLogo {
+  opacity: 0;
+  position: relative;
+  top: 2rem;
+  transition: all 1000ms;
+  text-align: center;
+
+  &.isVisible {
+    opacity: 1;
+    top: 0;
+    z-index: 1;
+  }
+
+  a {
+    display: inline-block;
+    border: 4px solid main.$colorWhite;
+    padding: 1rem 1.5rem;
+    &:hover {
+      border: 4px solid main.$colorAccent;
+    }
+  }
+}
+
+
+
+// META DATA -------------
+.metaData {
+  font-size: .8rem;
+}
+
+.lineMeta {
+  background-color: main.$colorLight;
+  height: 2px;
+  width: 100%;
+}
+.metaData--lined {
+  background-color: main.$colorWhite;
+  display: inline-block;
+  padding: 0 1rem;
+  position: relative;
+  top: -22px;
+  font-size: .9rem;
+}
+
+
+
+// FOOTER -------------
+footer {
+  textarea {
+    height: 7em;
+  }
+  .btn {
+    border-color: main.$colorDim;
+    color: main.$colorDim;
+  }
+  .addressContainer {
+    .title6 {
+      display: inline-block;
+      width: 90px;
+    }
+    address {
+      font-size: 0.8rem;
+    }
+    .postalAddress {
+      padding-top: .4rem;
+      vertical-align: top;
+    }
+  }
+  .social {
+    .icon--alt {
+      color: main.$colorDim;
+    }    
+  }
+}
+
+
+
+// ---------------------------------
+// ONLY ON XS SCREEN
+// ---------------------------------
+
+@media screen and (min-width: 0) and (max-width: 575px) { 
+
+  .appTitle {
+    margin-top: 7rem;
+  }
+  
+  .itemToHideOnXS {
+    display: none !important;
+  }
+}
+
+
+
+// ---------------------------------
+// FROM XS TO M SCREEN
+// ---------------------------------
+
+@media screen and (min-width: 0) and (max-width: 991px) {
+
+  // --- NAV SCROLL SPY JS COMPONENT ---
+  #navTrigger.navScrollSpyTarget:not(.closeMenu) {
+    background-color: rgba(255, 255, 255, .8);
+    box-shadow: 0 0 10px rgba(113, 121, 129, .5);
+    color: main.$colorDark;
+    transition: background-color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out;
+    &:hover {
+      color: main.$colorAccent;
+    }
+  }
+
+  // MAIN NAV -------------
+  .mainNav {
+    font-size: .8rem;
+    margin: 0;
+    padding: 4rem 2rem 2rem 2rem;
+    li {
+      display: block;
+      padding: 0;
+      list-style: none;
+      a {
+        // BOX
+        display: block;
+        border-bottom: 2px solid main.$colorLight;
+        padding: 1rem .5rem;
+        // FONT
+        font-family: main.$fontSecondary;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+      &:last-of-type a {
+        border: none;
+      }
+    }
+  }
+
+  // SOCIAL NAV -------------
+  .socialNav {
+    margin: 0;
+    padding: 0 0 0 2rem;
+    li {
+      a:hover i::before {
+        border: 2px solid main.$colorAccent;
+        transition: color .1s ease-in-out;
+      }
+      i {
+        margin-right: 0;
+        &::before {
+          border: 2px solid main.$colorLight;
+          border-radius: 50%;
+          height: 1.3rem;
+          width: 1.3rem;
+          font-size: 1rem !important;
+          line-height: 1.3rem;
+        }
+      }
+    }
+  }
+}
+
+
+
+// ---------------------------------
+// FROM S SCREEN
+// ---------------------------------
+
+@media screen and (max-width: 575px) {
+
+  .grid.grid-from-s {
+    display: block;
+  }
+}
+
+
+
+// ---------------------------------
+// FROM S TO M SCREEN
+// ---------------------------------
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+
+  .appTitle {
+    margin-top: 17rem;
+  }
+}
+
+
+
+// ---------------------------------
+// FROM M SCREEN
+// ---------------------------------
+
+@media screen and (min-width: 768px) {
+
+  .appHeader {
+    .slideDown {
+      display: inline-block;
+    }
+    .appTitle {
+      margin-top: 13rem;
+    }
+  }
+}
+
+
+
+// ---------------------------------
+// FROM L SCREEN
+// ---------------------------------
+
+@media screen and (min-width: 992px) {
+
+  #navTrigger {
+    display: none;
+  }
+
+  #menu {
+    background: radial-gradient(#6a605a, #494e53);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // --- RESET RELATED TO NAV TRIGGER COMPONENT ---
+    height: initial;
+    width: initial;
+    position: initial;
+    top: initial;
+    right: initial;
+    transition: none;
+    z-index: initial;
+    // --- END RESET RELATED TO NAV TRIGGER COMPONENT ---
+
+    // MAIN NAV -------------
+    .mainNav {
+      font-size: 0;
+      li {
+        display: inline-block;
+        list-style: none;
+        a {
+          // BOX
+          border: none;
+          display: block;
+          padding: 1rem 2rem;
+          // FONT
+          color: #fff;
+          font-family: main.$fontSecondary;
+          font-size: .8rem;
+          text-decoration: none;
+          text-transform: uppercase;
+          &:hover {
+            background: rgba(113, 121, 129, .3);
+          }
+        }
+        &.isActive a {
+          background: #fff;
+          color: main.$colorDark;
+          &:hover {
+            color: main.$colorAccent;
+          }
+        }
+      }
+    }
+  
+    // SOCIAL NAV -------------
+    .socialNav {
+      margin: 0;
+      padding-right: 1.5rem;
+      a:not(:hover) i {
+        color: #fff;
+      }
+    }
+  }
+}
