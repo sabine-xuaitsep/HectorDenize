@@ -1,0 +1,74 @@
+// ./hectordenize/scss/components/_images.scss
+// IMAGES LAYOUT
+
+@use '../core/init';
+
+// ------------------------------------------------------------------
+// --------- AVAILABLE IMAGES HELPERS ---------
+// ------------------------------------------------------------------
+
+// .ratioBox, .zoomBox
+
+
+
+// ------------------------------------------------------------------
+// --------- IMAGES SPECIFICATIONS ---------
+// ------------------------------------------------------------------
+
+// ------------- RESET -------------
+figure {
+  @include init.reset;
+}
+// ------------- END RESET -------------
+
+
+
+img {
+  max-width: 100%;
+}
+
+
+
+.ratioBox {
+  margin: 0;
+  width: 100%;
+  padding: 56.25% 0 0 0;
+  position: relative;
+  img {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+
+
+.zoomBox {
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  a {
+    text-decoration: none;
+    border: none;
+    &:hover {
+      text-decoration: none;
+      border: none;
+    }
+  }
+  img {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 2s ease;
+  }
+  &:hover img {
+    transform: scale(1.1);
+  }
+}
