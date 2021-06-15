@@ -1,0 +1,152 @@
+// ./hectordenize/scss/modules/_buttons.scss
+// BUTTONS MODULE
+
+@use '../core/typography' as typo;
+@use '../core/colors';
+@use '../core/breakpoints' as brkpnts;
+
+// ------------------------------------------------------------------
+// --------- AVAILABLE BUTTONS HELPERS ---------
+// ------------------------------------------------------------------
+
+// .btn, .btn--primary, .btn--large, .btn--small, .btn--fit
+// .icon, .disabled
+
+
+
+// ------------------------------------------------------------------
+// --------- BUTTONS VARIABLES & PLACEHOLDERS ---------
+// ------------------------------------------------------------------
+
+// ------------- BUTTONS FONT ------------- 
+$btnTypo:   typo.$fontSecondary;
+
+
+
+// ------------- BUTTONS COLORS ------------- 
+$btnDefault-bckgrndColor:       colors.$colorWhite;
+$btnDefault-borderColor:        colors.$colorDark;
+$btnDefault-color:              colors.$colorDark;
+
+$hover-btnDefault-borderColor:   colors.$colorAccent;
+$hover-btnDefault-color:         colors.$colorAccent;
+
+
+$btnPrimary-bckgrndColor:       colors.$colorDark;
+$btnPrimary-color:              colors.$colorWhite;
+
+$hover-btnPrimary-bckgrndColor:  colors.$colorAccent;
+$hover-btnPrimary-color:         colors.$colorWhite;
+
+$btn-paddingLeftRight-XSonly:      1rem;
+
+
+
+// ------------- BUTTON LAYOUT ------------- 
+%btn {
+  // BOX
+  cursor: pointer;
+  background-color: $btnDefault-bckgrndColor;
+  border: 2px solid $btnDefault-borderColor;
+  display: inline-block;
+  margin: 1rem .5rem;
+  padding: 1rem 2rem;
+  // FONT
+  color: $btnDefault-color;
+  font-family: $btnTypo;
+  font-size: .8rem;
+  letter-spacing: 0.025em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all .2s ease-in-out;
+  vertical-align: top;
+  
+  &:disabled,
+  &.disabled {
+    opacity: .3;
+    pointer-events: none;
+  }
+
+  &:hover:not(:disabled) {
+    border: 2px solid $hover-btnDefault-borderColor;
+    color: $hover-btnDefault-color;
+  }
+
+  .icon {
+    padding-right: .5rem;
+  }
+}
+
+
+
+// ---------------------------------
+// BUTTONS MODIFIERS
+// ---------------------------------
+
+// ------------- LARGE BUTTON ------------- 
+$btnLargeSize:    .9rem;
+$btnLargePadding: 1.2rem 2rem;
+
+
+
+// ------------- SMALL BUTTON ------------- 
+$btnSmallSize:    .7rem;
+$btnSmallPadding: .8rem 2rem;
+
+
+
+// ------------- FIT BUTTON ------------- 
+$btnFitWidth: 100%;
+
+// ---------------------------------
+// END BUTTONS MODIFIERS
+// ---------------------------------
+
+
+
+// ------------------------------------------------------------------
+// --------- BUTTONS SPECIFICATIONS ---------
+// ------------------------------------------------------------------
+
+.btn {
+  @extend %btn;
+}
+
+.btn--primary {
+  @extend %btn;
+  background-color: $btnPrimary-bckgrndColor;
+  color: $btnPrimary-color;
+
+  &:hover:not(:disabled) {
+    background-color: $hover-btnPrimary-bckgrndColor;
+    color: $hover-btnPrimary-color;
+  }
+}
+
+.btn--large {
+  @extend %btn;
+  font-size: $btnLargeSize;
+  padding: $btnLargePadding;
+}
+
+.btn--small {
+  @extend %btn;
+  font-size: $btnSmallSize;
+  padding: $btnSmallPadding;
+}
+
+.btn--fit {
+  @extend %btn;
+  width: $btnFitWidth;
+}
+
+
+
+@media screen and (min-width: map-get(brkpnts.$breakpoints, 'xs', 'min-width')) and (max-width: map-get(brkpnts.$breakpoints, 'xs', 'max-width')) { 
+
+  .btn, .btn--primary, .btn--large, .btn--small, .btn--fit {
+    padding-left: $btn-paddingLeftRight-XSonly;
+    padding-right: $btn-paddingLeftRight-XSonly;
+  }
+}
