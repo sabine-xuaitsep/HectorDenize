@@ -1,0 +1,140 @@
+// ./hectordenize/scss/layout/_display.scss
+//  DISPLAY LAYOUT
+
+@use "sass:map";
+@use '../core/breakpoints' as brkpnts;
+
+// ------------------------------------------------------------------
+// --------- AVAILABLE DISPLAY HELPERS ---------
+// ------------------------------------------------------------------
+
+// .deny, .block, .inline-block, .inline, .flex, .inline-flex, .table, .table-cell
+
+// DENY === display: none;
+// SHOW === display: block;
+// .deny                           DENY ON ALL
+// .block                          SHOW ON ALL
+
+// ------------- info ------------- 
+// {screenSize} = xs, s, m, l, xl, xxl
+// === from '../core/breakpoints'
+// ------------- END info ------------- 
+// .deny-on-{screenSize}-only      DENY ONLY ON $sreenSize
+// .block-on-{$creenSize}-only     SHOW ONLY ON $screenSize
+// .deny-from-{screenSize}         DENY FROM $sreenSize
+// .deny-from-xxxl                 DENY FROM xxxl
+// .block-from-{screenSize}        SHOW FROM $sreenSize
+// .block-from-xxxl                SHOW FROM xxxl
+// .deny-until-{screenSize}        DENY UNTIL $sreenSize
+// .block-until-{screenSize}       SHOW UNTIL $sreenSize
+
+
+
+// ------------------------------------------------------------------
+// --------- DISPLAY VARIABLES ---------
+// ------------------------------------------------------------------
+
+// -------------  DISPLAY MODES ------------- 
+// $displayModes: (value: label)
+$displayModes: (
+  none:           'deny', 
+  block:          'block', 
+  inline-block:   'inline-block', 
+  inline:         'inline',
+  flex:           'flex',
+  inline-flex:    'inline-flex', 
+  table:          'table', 
+  table-cell:     'table-cell'
+);
+
+
+
+// ------------------------------------------------------------------
+// --------- DISPLAY SPECIFICATIONS ---------
+// ------------------------------------------------------------------
+
+// ------------- DISPLAY HELPERS ------------- 
+@each $value, $label in $displayModes {
+  // .{displayLabel}
+  .#{$label} {
+    display: #{$value};
+  }
+}
+
+
+
+// ---------------------------------
+// RESPONSIVE DISPLAY HELPERS
+// ---------------------------------
+
+// DISPLAY NONE ONLY ON XS screen, S screen, M screen, L screen, XL screen, XXL screen
+@each $screenSizes, $values in brkpnts.$breakpoints {
+  @media screen and (min-width: map.get($values, 'min-width')) and (max-width: map.get($values, 'max-width')) {
+    .deny-on-#{$screenSizes}-only {
+      display: none;
+    }
+  }
+}
+
+// DISPLAY BLOCK ONLY ON XS screen, S screen, M screen, L screen, XL screen, XXL screen
+@each $screenSizes, $values in brkpnts.$breakpoints {
+  @media screen and (min-width: map.get($values, 'min-width')) and (max-width: map.get($values, 'max-width')) {
+    .block-on-#{$screenSizes}-only {
+      display: block;
+    }
+  }
+}
+
+// DISPLAY NONE FROM XS screen, S screen, M screen, L screen, XL screen, XXL screen
+@each $screenSizes, $values in brkpnts.$breakpoints {
+  @media screen and (min-width: map.get($values, 'min-width')) {
+    .deny-from-#{$screenSizes} {
+      display: none;
+    }
+  }
+}
+
+// DISPLAY NONE FROM XXXL screen
+@media screen and (min-width: map.get(brkpnts.$breakpointXXXL, 'min-width')) {
+  .deny-from-xxxl {
+    display: none;
+  }
+}
+
+// DISPLAY BLOCK FROM XS screen, S screen, M screen, L screen, XL screen, XXL screen
+@each $screenSizes, $values in brkpnts.$breakpoints {
+  @media screen and (min-width: map.get($values, 'min-width')) {
+    .block-from-#{$screenSizes} {
+      display: block;
+    }
+  }
+}
+
+// DISPLAY BLOCK FROM XXXL screen
+@media screen and (min-width: map.get(brkpnts.$breakpointXXXL, 'min-width')) {
+  .block-from-xxxl {
+    display: block;
+  }
+}
+
+// DISPLAY NONE UNTIL XS screen, S screen, M screen, L screen, XL screen, XXL screen
+@each $screenSizes, $values in brkpnts.$breakpoints {
+  @media screen and (max-width: map.get($values, 'max-width')) {
+    .deny-until-#{$screenSizes} {
+      display: none;
+    }
+  }
+}
+
+// DISPLAY BLOCK UNTIL XS screen, S screen, M screen, L screen, XL screen, XXL screen
+@each $screenSizes, $values in brkpnts.$breakpoints {
+  @media screen and (max-width: map.get($values, 'max-width')) {
+    .block-until-#{$screenSizes} {
+      display: block;
+    }
+  }
+}
+
+// ---------------------------------
+// END RESPONSIVE DISPLAY HELPERS
+// ---------------------------------

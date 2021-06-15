@@ -66,3 +66,25 @@
 // .row-xxxl-{i}  XXXL screen
 
 // ------------------------------------------------------------------
+@forward 'display';
+// .deny, .block, .inline-block, .inline, .flex, .inline-flex, .table, .table-cell
+
+// DENY === display: none;
+// SHOW === display: block;
+// .deny                           DENY ON ALL
+// .block                          SHOW ON ALL
+
+// ------------- info ------------- 
+// {screenSize} = xs, s, m, l, xl, xxl
+// === from '../core/breakpoints'
+// ------------- END info ------------- 
+// .deny-on-{screenSize}-only      DENY ONLY ON $sreenSize
+// .block-on-{$creenSize}-only     SHOW ONLY ON $screenSize
+// .deny-from-{screenSize}         DENY FROM $sreenSize
+// .deny-from-xxxl                 DENY FROM xxxl
+// .block-from-{screenSize}        SHOW FROM $sreenSize
+// .block-from-xxxl                SHOW FROM xxxl
+// .deny-until-{screenSize}        DENY UNTIL $sreenSize
+// .block-until-{screenSize}       SHOW UNTIL $sreenSize
+
+// ------------------------------------------------------------------
