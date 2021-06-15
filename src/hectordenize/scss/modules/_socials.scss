@@ -1,0 +1,102 @@
+// ./hectordenize/scss/modules/_socials.scss
+// SOCIALS MODULE
+
+@use '../core/colors';
+
+// ------------------------------------------------------------------
+// --------- AVAILABLE SOCIALS HELPERS ---------
+// ------------------------------------------------------------------
+
+// .social, .icon, .icon--alt, .label
+
+
+
+// ------------------------------------------------------------------
+// --------- SOCIALS VARIABLES ---------
+// ------------------------------------------------------------------
+
+// ------------- SOCIALS COLORS ------------- 
+$icon-color:                  colors.$colorDark;
+$icon--alt-borderColor:       colors.$colorLight;
+
+$link-txtColor:               colors.$colorDark;
+$hover-link-txtColor:         colors.$colorAccent;
+
+$hover-icon-color:            colors.$colorAccent;
+$hover-icon--alt-borderColor: colors.$colorAccent;
+
+$label-display:               none;
+
+
+
+// ------------------------------------------------------------------
+// --------- SOCIALS SPECIFICATIONS ---------
+// ------------------------------------------------------------------
+
+//  icon with <i> tag in a link
+//  or icon <span class="icon"> in a link
+
+.social {
+  margin: 1.5em 0;
+  padding: 0;
+  letter-spacing: 0;
+  line-height: 1;
+
+  li {
+    display: inline-block;
+    padding: 0;
+    margin: .5rem .5rem .5rem 0;
+    list-style: none;
+
+    a {
+      color: $link-txtColor;
+      border: none;
+      text-decoration: none;
+
+      &:hover {
+        color: $hover-link-txtColor;
+
+        i, .icon, .icon--alt {
+          color: $hover-icon-color;
+        }
+
+        .icon--alt::before {
+          border: 2px solid $hover-icon--alt-borderColor;
+          transition: color .1s ease-in-out;
+        }
+      }
+    }
+
+    i:not(.icon--alt), .icon {
+      margin-right: .5rem;
+    }
+
+    i, .icon, .icon--alt {
+      color: $icon-color;
+    } 
+
+    i::before, .icon::before, .icon--alt::before {
+      display: block;
+      padding: .3rem;
+      text-align: center;
+    } 
+    
+    i:not(.icon--alt)::before, .icon::before {
+      font-size: 1.3rem;
+    }
+    
+    .icon--alt::before {
+      width: 1.3rem;
+      height: 1.3rem;
+      line-height: 1.3rem;
+      border: 2px solid $icon--alt-borderColor;
+      border-radius: 50%;
+      font-size: 1rem;
+    }
+
+    .label {
+      display: $label-display;
+      margin: 0 .5rem;
+    }
+  }
+}
