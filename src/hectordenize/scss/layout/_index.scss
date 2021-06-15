@@ -23,3 +23,46 @@
 // .ratioBox, .zoomBox
 
 // ------------------------------------------------------------------
+@forward 'grid';
+// .grid, .grid--no-gap
+
+// {i} === from 1 trough 4 [{i}rem]
+// .gap-{i}, .gapX-{i}, .gapY-{i}
+
+// {i} === from 1 trough 10 [{i}px]
+// .gap-{i}px, .gapX-{i}px, .gapY-{i}px
+
+
+// ------------- info ------------- 
+// .col{label}, .row{label}, .offset{label} 
+// {label} === from '../core/breakpoints'
+// ------------- END info ------------- 
+
+// {i} = from 1 trough 12
+// .col-{i}       XS screen || ALL screens
+// .col-s-{i}     S screen
+// .col-m-{i}     M screen
+// .col-l-{i}     L screen
+// .col-xl-{i}    XL screen
+// .col-xxl-{i}   XXL screen
+// .col-xxxl-{i}  XXXL screen
+
+  // {i} = from 0 trough 11
+  // .offset-{i}        XS screen || ALL screens
+  // .offset-s-{i}      S screen
+  // .offset-m-{i}      M screen
+  // .offset-l-{i}      L screen
+  // .offset-xl-{i}     XL screen
+  // .offset-xxl-{i}    XXL screen
+  // .offset-xxxl-{i}   XXXL screen
+
+// {i} = from 1 trough 12
+// .row-{i}       XS screen || ALL screens
+// .row-s-{i}     S screen
+// .row-m-{i}     M screen
+// .row-l-{i}     L screen
+// .row-xl-{i}    XL screen
+// .row-xxl-{i}   XXL screen
+// .row-xxxl-{i}  XXXL screen
+
+// ------------------------------------------------------------------

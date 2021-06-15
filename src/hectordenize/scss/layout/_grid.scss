@@ -1,0 +1,171 @@
+// ./hectordenize/scss/layout/_grid.scss
+// GRID LAYOUT
+
+@use '../core/breakpoints' as brkpnts;
+
+// ------------------------------------------------------------------
+// --------- AVAILABLE GRID HELPERS ---------
+// ------------------------------------------------------------------
+
+// .grid, .grid--no-gap
+
+// {i} === from 1 trough 4 [{i}rem]
+// .gap-{i}, .gapX-{i}, .gapY-{i}
+
+// {i} === from 1 trough 10 [{i}px]
+// .gap-{i}px, .gapX-{i}px, .gapY-{i}px
+
+
+// ------------- info ------------- 
+// .col{label}, .row{label}, .offset{label} 
+// {label} === from '../core/breakpoints'
+// ------------- END info ------------- 
+
+// {i} = from 1 trough 12
+// .col-{i}       XS screen || ALL screens
+// .col-s-{i}     S screen
+// .col-m-{i}     M screen
+// .col-l-{i}     L screen
+// .col-xl-{i}    XL screen
+// .col-xxl-{i}   XXL screen
+// .col-xxxl-{i}  XXXL screen
+
+  // {i} = from 0 trough 11
+  // .offset-{i}        XS screen || ALL screens
+  // .offset-s-{i}      S screen
+  // .offset-m-{i}      M screen
+  // .offset-l-{i}      L screen
+  // .offset-xl-{i}     XL screen
+  // .offset-xxl-{i}    XXL screen
+  // .offset-xxxl-{i}   XXXL screen
+
+// {i} = from 1 trough 12
+// .row-{i}       XS screen || ALL screens
+// .row-s-{i}     S screen
+// .row-m-{i}     M screen
+// .row-l-{i}     L screen
+// .row-xl-{i}    XL screen
+// .row-xxl-{i}   XXL screen
+// .row-xxxl-{i}  XXXL screen
+
+
+
+// ------------------------------------------------------------------
+// --------- GRID VARIABLES & MIXINS ---------
+// ------------------------------------------------------------------
+
+$gapX: 1rem; // horizontal gutter
+$gapY: 1rem; // vertical gutter
+
+// GRID 12 columns
+@mixin grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  > * {
+    grid-column: span 12;
+    grid-row: span 1;
+  }
+}
+
+
+
+// ------------------------------------------------------------------
+// --------- GRID SPECIFICATIONS ---------
+// ------------------------------------------------------------------
+
+// ------------- GRID -------------
+
+// GRID SYSTEM
+.grid {
+  @include grid;
+  gap: $gapY $gapX;
+
+  &--no-gap {
+    @include grid;
+    gap: 0 0;
+  }
+
+  @for $i from 1 through 4 {
+    &.gap-#{$i} {
+      column-gap: #{$i}rem;
+      row-gap: #{$i}rem;
+    }
+    &.gapX-#{$i} {
+      column-gap: #{$i}rem;
+    }
+    &.gapY-#{$i} {
+      row-gap: #{$i}rem;
+    }
+  }
+  @for $i from 1 through 10 {
+    &.gap-#{$i}px {
+      column-gap: #{$i}px;
+      row-gap: #{$i}px;
+    }
+    &.gapX-#{$i}px {
+      column-gap: #{$i}px;
+    }
+    &.gapY-#{$i}px {
+      row-gap: #{$i}px;
+    }
+  }
+}
+
+// GRID SYSTEM for XS screen (all), S screen, M screen, L screen, XL screen, XXL screen
+@each $screenSizes, $values in brkpnts.$breakpoints {
+  @media screen and (min-width: map-get($values, 'min-width')) {
+    @for $i from 1 through 12 {
+      // col-{i}       XS screen || ALL screens
+      // col-s-{i}     S screen
+      // col-m-{i}     M screen
+      // col-l-{i}     L screen
+      // col-xl-{i}    XL screen
+      // col-xxl-{i}   XXL screen
+      .col#{map-get($values, 'label')}-#{$i} {
+        grid-column: span + ' ' + #{$i};
+        @for $j from 0 through 11 {
+          // offset-{i}       XS screen || ALL screens
+          // offset-s-{i}     S screen
+          // offset-m-{i}     M screen
+          // offset-l-{i}     L screen
+          // offset-xl-{i}    XL screen
+          // offset-xxl-{i}   XXL screen
+          &.offset#{map-get($values, 'label')}-#{$j} {
+            grid-column: #{$j+1} + ' / ' + span + ' ' + #{$i};
+          }
+        }
+      }
+      // row-{i}       XS screen || ALL screens
+      // row-s-{i}     S screen
+      // row-m-{i}     M screen
+      // row-l-{i}     L screen
+      // row-xl-{i}    XL screen
+      // row-xxl-{i}   XXL screen
+      .row#{map-get($values, 'label')}-#{$i} {
+        grid-row: span + ' ' + #{$i};
+      }
+    }
+  } 
+}
+
+// GRID SYSTEM for XXXL screen
+@media screen and (min-width: map-get(brkpnts.$breakpointXXXL, 'min-width')) {
+  @for $i from 1 through 12 {
+    // col-xxxl-{i}    XXXL screen
+    .col#{map-get(brkpnts.$breakpointXXXL, 'label')}-#{$i} {
+      grid-column: span + ' ' + #{$i};
+      @for $j from 0 through 11 {
+        // offset-xxxl-{i}    XXXL screen
+        &.offset#{map-get(brkpnts.$breakpointXXXL, 'label')}-#{$j} {
+          grid-column: #{$j+1} + ' / ' + span + ' ' + #{$i};
+        }
+      }
+    }
+    // row-xxxl-{i}    XXXL screen
+    .row#{map-get(brkpnts.$breakpointXXXL, 'label')}-#{$i} {
+      grid-row: span + ' ' + #{$i};
+    }
+  }
+} 
+
+// ------------- END GRID -------------
