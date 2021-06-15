@@ -1,2 +1,2 @@
-# HectorDenizeCSS 
+# HectorDenize
 ## FrontEnd Framework
