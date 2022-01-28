@@ -109,10 +109,10 @@ footer {
     address {
       font-size: 0.8rem;
     }
-    .postalAddress {
-      padding-top: .4rem;
-      vertical-align: top;
-    }
+    // .postalAddress {
+    //   padding-top: .4rem;
+    //   vertical-align: top;
+    // }
   }
   .social {
     .icon--alt {
@@ -149,7 +149,7 @@ footer {
   // --- NAV SCROLL SPY JS COMPONENT ---
   #navTrigger.navScrollSpyTarget:not(.closeMenu) {
     background-color: rgba(255, 255, 255, .8);
-    box-shadow: 0 0 10px rgba(113, 121, 129, .5);
+    box-shadow: 0 0 10px rgba(104, 141, 161, .5);
     color: main.$colorDark;
     transition: background-color 300ms ease-in-out;
     transition: box-shadow 300ms ease-in-out;
@@ -264,7 +264,7 @@ footer {
   }
 
   #menu {
-    background: radial-gradient(#6a605a, #494e53);
+    background: radial-gradient(#32434D, #536F80);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -296,7 +296,7 @@ footer {
           text-decoration: none;
           text-transform: uppercase;
           &:hover {
-            background: rgba(113, 121, 129, .3);
+            background: #0D2533;
           }
         }
         &.isActive a {

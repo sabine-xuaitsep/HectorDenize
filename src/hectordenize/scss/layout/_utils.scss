@@ -5,6 +5,19 @@
 @use '../core/breakpoints' as brkpnts;
 @use '../core/colors';
 
+// ------------- MAP TO TEST -------------
+
+// NOT USED BUT CAN BE HELPFULL
+$brkpntsFromS: map.deep-remove(brkpnts.$breakpoints, "xs"); // OK
+
+// NOT USED BUT HAVE TO BE TESTED
+// map.merge, deep.merge
+// https://sass-lang.com/documentation/modules/map
+
+// ------------- END MAP TO TEST -------------
+
+
+
 // ------------------------------------------------------------------
 // --------- AVAILABLE UTILS HELPERS ---------
 // ------------------------------------------------------------------
